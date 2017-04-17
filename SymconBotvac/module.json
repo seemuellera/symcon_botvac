@@ -1,0 +1,11 @@
+{
+    "id": "{5742F947-0C38-4A51-A6CB-C1F473ACEECA}",
+    "name": "SymconBotvac",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "BOTVAC"
+}

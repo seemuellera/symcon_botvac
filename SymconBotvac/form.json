@@ -1,0 +1,28 @@
+{
+    "elements":
+    [
+        { "type": "ValidationTextBox", "name": "Username", "caption": "Username" },
+        { "type": "PasswordTextBox", "name": "Password", "caption": "Password" },
+	{ "type": "Select", "name": "BotvacVendor", "caption": "Robot Vendor",
+		"options": [
+			{ "label": "Neato", "value": "neato" },
+			{ "label": "Vorwerk", "value": "vorwerk" }
+		]
+	},
+        { "type": "Button", "label": "Generate Authorization Token", "onClick": "echo $id" },
+        { "type": "ValidationTextBox", "name": "Token", "caption": "Authorization Token" },
+        { "type": "Button", "label": "Fetch robot information", "onClick": "echo $id" },
+        { "type": "Select", "name": "Robot", "caption": "Select Robot" }
+    ],
+    "actions":
+    [
+        { "type": "Button", "label": "Send Message", "onClick": "SMS_Send($id, $Number, $Message);" },
+        { "type": "Button", "label": "Read Balance", "onClick": "echo 'Balance: '.sprintf('%.2f', SMS_RequestBalance($id)).' credits';" }
+    ],
+    "status":
+    [
+        { "code": 102, "icon": "active", "caption": "Login information valid" },
+        { "code": 201, "icon": "error", "caption": "Authentication failed" },
+        { "code": 202, "icon": "error", "caption": "No credits left" }
+    ]
+}
