@@ -9,7 +9,6 @@
             parent::__construct($InstanceID);
  
             // Selbsterstellter Code
-
         }
  
         // Überschreibt die interne IPS_Create($id) Funktion
@@ -18,10 +17,10 @@
 		// Diese Zeile nicht löschen.
             	parent::Create();
 
-		this->RegisterPropertyString("Sender","SymconBotvac");
-		this->RegisterPropertyString("Username","");
-		this->RegisterPropertyString("Password","");
-		this->RegisterPropertyString("RobotVendor","neato");
+		$this->RegisterPropertyString("Sender","SymconBotvac");
+		$this->RegisterPropertyString("Username","");
+		$this->RegisterPropertyString("Password","");
+		$this->RegisterPropertyString("RobotVendor","neato");
  
         }
  
