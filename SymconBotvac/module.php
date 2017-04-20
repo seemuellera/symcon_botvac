@@ -35,6 +35,21 @@
             // Diese Zeile nicht löschen
             parent::ApplyChanges();
         }
+
+	/**
+	* Generate the Authorization Token and store it
+	*
+	*/
+	public function Authorize() {
+
+		$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
+                $AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
+		
+		if ($AuthToken) {
+
+                        $this->RegisterPropertyString("AuthToken", $AuthToken);
+		}
+	}
  
         /**
 	* Get the list of robots linked to this profile and modifies the Select list to allow the user to select them.
@@ -42,16 +57,8 @@
         */
         public function FetchRobotList() {
 
-		if ($this->ReadPropertyString("AuthToken") == "") {
 
-			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
-			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
-			$this->RegisterPropertyString("AuthToken", $AuthToken);
-		}
-		else {
-
-			$NeatoClient = new NeatoBotvacClient($this->ReadPropertyString("AuthToken"), $this->ReadPropertyString("BotvacVendor") );
-		}	
+		$NeatoClient = new NeatoBotvacClient($this->ReadPropertyString("AuthToken"), $this->ReadPropertyString("BotvacVendor") );
 
 		$allRobots = Array();
 		

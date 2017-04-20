@@ -3,13 +3,14 @@
     [
         { "type": "ValidationTextBox", "name": "Username", "caption": "Username" },
         { "type": "PasswordTextBox", "name": "Password", "caption": "Password" },
-        { "type": "ValidationTextBox", "name": "AuthToken", "caption": "Authentication Token" },
 	{ "type": "Select", "name": "BotvacVendor", "caption": "Robot Vendor",
 		"options": [
 			{ "label": "Neato", "value": "neato" },
 			{ "label": "Vorwerk", "value": "vorwerk" }
 		]
 	},
+        { "type": "Button", "label": "Generate Authenticaiton Token", "onClick": "BOTVAC_Authorize();" },
+        { "type": "ValidationTextBox", "name": "AuthToken", "caption": "Authentication Token" },
         { "type": "Button", "label": "Fetch robot information", "onClick": "BOTVAC_FetchRobotList();" },
         { "type": "Select", "name": "Robot", "caption": "Select Robot" },
         { "type": "Label", "label": "Robot Status:" }
