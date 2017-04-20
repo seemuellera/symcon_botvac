@@ -42,6 +42,8 @@
 	*/
 	public function Authorize() {
 
+		echo "Function called";
+
 		$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
                 $AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
 
