@@ -9,9 +9,9 @@
 			{ "label": "Vorwerk", "value": "vorwerk" }
 		]
 	},
-        { "type": "Button", "label": "Generate Authenticaiton Token", "onClick": "BOTVAC_Authorize();" },
+        { "type": "Button", "label": "Generate Authenticaiton Token", "onClick": "BOTVAC_Authorize($id);" },
         { "type": "ValidationTextBox", "name": "AuthToken", "caption": "Authentication Token" },
-        { "type": "Button", "label": "Fetch robot information", "onClick": "BOTVAC_FetchRobotList();" },
+        { "type": "Button", "label": "Fetch robot information", "onClick": "BOTVAC_FetchRobotList($id);" },
         { "type": "Select", "name": "Robot", "caption": "Select Robot" },
         { "type": "Label", "label": "Robot Status:" }
     ],
