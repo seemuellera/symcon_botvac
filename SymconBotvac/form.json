@@ -9,7 +9,7 @@
 			{ "label": "Vorwerk", "value": "vorwerk" }
 		]
 	},
-        { "type": "Button", "label": "Fetch robot information", "onClick": "FetchRobotList();" },
+        { "type": "Button", "label": "Fetch robot information", "onClick": "BOTVAC_FetchRobotList();" },
         { "type": "Select", "name": "Robot", "caption": "Select Robot" },
         { "type": "Label", "label": "Robot Status:" }
     ],
