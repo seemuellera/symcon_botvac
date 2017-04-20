@@ -1,8 +1,8 @@
 <?
 
 	// Include the botvac library
-	require ("../lib/NeatoBotvacClient.php");
-	require ("../lib/NeatoBotvacRobot.php");
+	require ("../libs/NeatoBotvacClient.php");
+	require ("../libs/NeatoBotvacRobot.php");
 
     // Klassendefinition
     class SymconBotvac extends IPSModule {
