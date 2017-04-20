@@ -20,7 +20,7 @@
 		$this->RegisterPropertyString("Sender","SymconBotvac");
 		$this->RegisterPropertyString("Username","");
 		$this->RegisterPropertyString("Password","");
-		$this->RegisterPropertyString("RobotVendor","neato");
+		$this->RegisterPropertyString("BotvacVendor","");
  
         }
  
