@@ -29,7 +29,7 @@
 		$this->RegisterPropertyString("BotvacVendor","");
 
 		// Variables
-		$this->RegisterVariableString("Authentication Token","not set");
+		$this->RegisterVariableString("AuthToken","Web Service Authentication Token");
  
         }
  
@@ -50,7 +50,7 @@
 
 		if ($AuthToken) {
 
-			SetValue($this->GetIDForIdent("Authenication Token", $AuthToken) );
+			SetValue($this->GetIDForIdent("AuthToken", $AuthToken) );
 
 		}
 	}
