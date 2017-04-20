@@ -44,6 +44,8 @@
 
 		$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
                 $AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
+
+		$this->SendDebug("BOTVAC", $AuthToken, 0);
 		
 		if ($AuthToken) {
 
