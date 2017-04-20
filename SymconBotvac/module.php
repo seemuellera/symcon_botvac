@@ -50,7 +50,7 @@
 
 		if ($AuthToken) {
 
-			SetValue($this->GetIDForIdent("AuthToken", $AuthToken) );
+			SetValue($this->GetIDForIdent("AuthToken"), $AuthToken);
 
 		}
 	}
