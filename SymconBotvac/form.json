@@ -9,15 +9,18 @@
 			{ "label": "Vorwerk", "value": "vorwerk" }
 		]
 	},
-        { "type": "Button", "label": "Generate Authorization Token", "onClick": "echo $id" },
-        { "type": "ValidationTextBox", "name": "Token", "caption": "Authorization Token" },
         { "type": "Button", "label": "Fetch robot information", "onClick": "echo $id" },
-        { "type": "Select", "name": "Robot", "caption": "Select Robot" }
+        { "type": "Select", "name": "Robot", "caption": "Select Robot" },
+        { "type": "Label", "label": "Robot Status:" }
     ],
     "actions":
     [
-        { "type": "Button", "label": "Send Message", "onClick": "SMS_Send($id, $Number, $Message);" },
-        { "type": "Button", "label": "Read Balance", "onClick": "echo 'Balance: '.sprintf('%.2f', SMS_RequestBalance($id)).' credits';" }
+        { "type": "Button", "label": "Get robot status", "onClick": "SMS_Send($id, $Number, $Message);" },
+        { "type": "Button", "label": "Start cleaning", "onClick": "SMS_Send($id, $Number, $Message);" },
+        { "type": "Button", "label": "Start eco cleaning", "onClick": "SMS_Send($id, $Number, $Message);" },
+        { "type": "Button", "label": "Pause cleaning", "onClick": "SMS_Send($id, $Number, $Message);" },
+        { "type": "Button", "label": "Stop cleaning", "onClick": "SMS_Send($id, $Number, $Message);" },
+        { "type": "Button", "label": "Send to base", "onClick": "SMS_Send($id, $Number, $Message);" }
     ],
     "status":
     [
