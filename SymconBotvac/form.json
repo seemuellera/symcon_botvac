@@ -3,6 +3,7 @@
     [
         { "type": "ValidationTextBox", "name": "Username", "caption": "Username" },
         { "type": "PasswordTextBox", "name": "Password", "caption": "Password" },
+        { "type": "ValidationTextBox", "name": "AuthToken", "caption": "Authentication Token" },
 	{ "type": "Select", "name": "BotvacVendor", "caption": "Robot Vendor",
 		"options": [
 			{ "label": "Neato", "value": "neato" },
