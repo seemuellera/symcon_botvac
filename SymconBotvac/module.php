@@ -45,7 +45,7 @@
 		if ($this->ReadPropertyString("AuthToken") == "") {
 
 			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
-			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password");
+			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
 			$this->RegisterPropertyString("AuthToken", $AuthToken);
 		}
 		else {
