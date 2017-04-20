@@ -47,6 +47,8 @@
 		
 		if ($AuthToken) {
 
+			$this->SendDebug("BOTVAC", $AuthToken);
+
                         $this->RegisterPropertyString("AuthToken", $AuthToken);
 		}
 	}
