@@ -1,4 +1,9 @@
 <?
+
+	// Include the botvac library
+	require ("../lib/NeatoBotvacClient.php");
+	require ("../lib/NeatoBotvacRobot.php");
+
     // Klassendefinition
     class SymconBotvac extends IPSModule {
  
@@ -21,6 +26,7 @@
 		$this->RegisterPropertyString("Username","");
 		$this->RegisterPropertyString("Password","");
 		$this->RegisterPropertyString("BotvacVendor","");
+		$this->RegisterPropertyString("AuthToken","");
  
         }
  
@@ -31,14 +37,28 @@
         }
  
         /**
-        * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
-        * Die Funktionen werden, mit dem selbst eingerichteten Prefix, in PHP und JSON-RPC wiefolgt zur Verfügung gestellt:
-        *
-        * ABC_MeineErsteEigeneFunktion($id);
+	* Get the list of robots linked to this profile and modifies the Select list to allow the user to select them.
         *
         */
-        public function MeineErsteEigeneFunktion() {
-            // Selbsterstellter Code
+        public function FetchRobotList() {
+
+		if ($this->ReadPropertyString("AuthToken") == "") {
+
+			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
+			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password");
+			$this->RegisterPropertyString("AuthToken", $AuthToken);
+		}
+		else {
+
+			$NeatoClient = new NeatoBotvacClient($this->ReadPropertyString("AuthToken"), $this->ReadPropertyString("BotvacVendor") );
+		}	
+
+		$allRobots = Array();
+		
+		$allRobots = $NeatoClient->getRobots();	
+
+		$this->SendDebug("BOTVAC", print_r($allRobots), 0);
+		
         }
     }
 ?>
