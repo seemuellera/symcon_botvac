@@ -42,16 +42,12 @@
 	*/
 	public function Authorize() {
 
-		echo "Function called";
-
 		$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
                 $AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
 
-		$this->SendDebug("BOTVAC", $AuthToken, 0);
-		
 		if ($AuthToken) {
 
-			$this->SendDebug("BOTVAC", $AuthToken, 0);
+			echo $AuthToken;
 
                         $this->RegisterPropertyString("AuthToken", $AuthToken);
 		}
