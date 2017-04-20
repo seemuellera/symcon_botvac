@@ -22,11 +22,14 @@
 		// Diese Zeile nicht löschen.
             	parent::Create();
 
+		// Properties
 		$this->RegisterPropertyString("Sender","SymconBotvac");
 		$this->RegisterPropertyString("Username","");
 		$this->RegisterPropertyString("Password","");
 		$this->RegisterPropertyString("BotvacVendor","");
-		$this->RegisterPropertyString("AuthToken","");
+
+		// Variables
+		$this->RegisterVariableString("Authentication Token","not set");
  
         }
  
@@ -47,9 +50,8 @@
 
 		if ($AuthToken) {
 
-			echo $AuthToken;
+			SetValue($this->GetIDForIdent("Authenication Token", $AuthToken) );
 
-                        $this->RegisterPropertyString("AuthToken", $AuthToken);
 		}
 	}
  
