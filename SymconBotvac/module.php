@@ -53,40 +53,50 @@
 		$form['elements'][] = Array("type" => "ValidationTextBox", "name" => "Username", "caption" => "Username");
 		$form['elements'][] = Array("type" => "PasswordTextBox", "name" => "Password", "caption" => "Password");
 		
+		// Now we need an array of vendors
 		$BotvacVendorOptions = Array();
 		$BotvacVendorOptions[] = Array("label" => "Neato", "value" => "neato");
 		$BotvacVendorOptions[] = Array("label" => "Vorwerk", "value" => "vorwerk");
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
+		// A button to fetch the robot list
+		$form['elements'][] = Array("type" => "Button", "label" => "Fetch Robot List", "onClick" => "BOTVAC_FetchRobotList()");
+
+		// Now we need to check if we have a list of Robots in the buffer
+		if ($this->getBuffer('RobotList') ) {
+
+
+		}
+	
+
+		// Return the completed form
 		return json_encode($form);
 
 	}
 
 
-	/**
-	* Generate the Authorization Token and store it
-	*
-	*/
-	public function Authorize() {
-
-		$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
-                $AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
-
-		if ($AuthToken) {
-
-			SetValue($this->GetIDForIdent("AuthToken"), $AuthToken);
-
-		}
-	}
- 
         /**
 	* Get the list of robots linked to this profile and modifies the Select list to allow the user to select them.
         *
         */
         public function FetchRobotList() {
 
+		if (! $this->GetBuffer('AuthToken') ) {
 
-		$NeatoClient = new NeatoBotvacClient($this->ReadPropertyString("AuthToken"), $this->ReadPropertyString("BotvacVendor") );
+			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
+			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
+
+			if ($AuthToken) {
+
+				$this->SetBuffer('AuthToken', $AuthToken);
+			}
+		
+		}
+		else {
+
+			$NeatoClient = new NeatoBotvacClient($this->GetBuffer('AuthToken'), $this->ReadPropertyString("BotvacVendor") );
+		}
+
 
 		$allRobots = Array();
 		
