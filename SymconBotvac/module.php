@@ -67,6 +67,17 @@
 
 			$form['elements'][] = Array("type" => "Label", "label" => "An Authentication Token was found");
 		}
+		else {
+
+			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
+			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
+
+                        if ($AuthToken) {
+
+                                $this->SetBuffer('AuthToken', $AuthToken);
+                        }
+
+		}
 
 
 		// Now we need to check if we have a list of Robots in the buffer
