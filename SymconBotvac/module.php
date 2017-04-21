@@ -29,6 +29,10 @@
 		$this->RegisterPropertyString("BotvacVendor","");
 
 		// Variables
+		$this->RegisterVariableString("BotvacSerial", "Robot Serial Number");
+		$this->RegisterVariableString("BotvacSecret", "Robot API Secret");
+		$this->RegisterVariableBoolean("BotvacStatus", "Robot Power Status");
+		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode");
  
         }
  
