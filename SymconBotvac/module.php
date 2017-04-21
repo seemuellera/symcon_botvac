@@ -31,8 +31,8 @@
 		// Variables
 		$this->RegisterVariableString("BotvacSerial", "Robot Serial Number");
 		$this->RegisterVariableString("BotvacSecret", "Robot API Secret");
-		$this->RegisterVariableBoolean("BotvacStatus", "Robot Power Status");
-		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode");
+		$this->RegisterVariableBoolean("BotvacStatus", "Robot Power Status","~Switch");
+		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode", "~Switch");
  
         }
  
@@ -43,10 +43,8 @@
         }
 
 
-	public function GetConfigurationForm() {
+	public function GetConfigurationForm($id) {
 
-		//$id = $_IPS['INSTANCE'];
-		print_r($_IPS);
         	
 		// Initialize the form
 		$form = Array(
@@ -65,7 +63,7 @@
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
 		// A button to fetch the robot list
-		$form['elements'][] = Array("type" => "Button", "label" => "Fetch Robot List", "onClick" => "BOTVAC_FetchRobotList($this->InstanceId)");
+		$form['elements'][] = Array("type" => "Button", "label" => "Fetch Robot List", "onClick" => "BOTVAC_FetchRobotList($id)");
 
 		// Now we need to check if we have a list of Robots in the buffer
 		if ($this->getBuffer('RobotList') ) {
