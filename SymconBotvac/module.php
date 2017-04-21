@@ -39,6 +39,30 @@
             parent::ApplyChanges();
         }
 
+
+	public function GetConfigurationForm() {
+
+        	
+		// Initialize the form
+		$form = Array(
+            		"elements" => Array(),
+			"actions" => Array()
+        		);
+
+		// Add the Elements
+		$form['elements'][] = Array("type" => "ValidationTextBox", "name" => "Username", "caption" => "Username");
+		$form['elements'][] = Array("type" => "PasswordTextBox", "name" => "Password", "caption" => "Password");
+		
+		$BotvacVendorOptions = Array();
+		$BotvacVendorOptions[] = Array("label" => "Neato", "value" => "neato");
+		$BotvacVendorOptions[] = Array("label" => "Vorwerk", "value" => "vorwerk");
+		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
+
+		return json_encode($form);
+
+	}
+
+
 	/**
 	* Generate the Authorization Token and store it
 	*
