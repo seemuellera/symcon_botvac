@@ -61,7 +61,7 @@
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
 		// A button to fetch the robot list
-		$form['elements'][] = Array("type" => "Button", "label" => "Fetch Robot List", "onClick" => "BOTVAC_FetchRobotList($id)");
+		$form['elements'][] = Array("type" => "Button", "label" => "Fetch Robot List", "onClick" => "BOTVAC_FetchRobotList($this->InstanceId)");
 
 		// Now we need to check if we have a list of Robots in the buffer
 		if ($this->getBuffer('RobotList') ) {
