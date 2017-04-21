@@ -41,7 +41,8 @@
 
 	public function GetConfigurationForm() {
 
-		$id = $_IPS['INSTANCE'];
+		//$id = $_IPS['INSTANCE'];
+		print_r($_IPS);
         	
 		// Initialize the form
 		$form = Array(
