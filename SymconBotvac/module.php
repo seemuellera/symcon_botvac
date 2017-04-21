@@ -43,7 +43,7 @@
         }
 
 
-	public function GetConfigurationForm($id) {
+	public function GetConfigurationForm() {
 
         	
 		// Initialize the form
@@ -62,8 +62,12 @@
 		$BotvacVendorOptions[] = Array("label" => "Vorwerk", "value" => "vorwerk");
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
-		// A button to fetch the robot list
-		$form['elements'][] = Array("type" => "Button", "label" => "Fetch Robot List", "onClick" => "BOTVAC_FetchRobotList($id)");
+		if ($this->GetBuffer('AuthToken') ) {
+
+
+			$form['elements'][] = Array("type" => "Label", "label" => "An Authentication Token was found");
+		}
+
 
 		// Now we need to check if we have a list of Robots in the buffer
 		if ($this->getBuffer('RobotList') ) {
