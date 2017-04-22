@@ -82,11 +82,18 @@
 
 			// Now we need a list of robots
 			$robots = Array();
+			$robotSelectOptions = Array();
 
-			$robots = $NeatoClient->getRobots();
+			$result = $NeatoClient->getRobots();
 
-			print_r($robots);
-			
+			$robots = $result['robots'];
+
+			foreach ($robots as $robot) {
+				
+				$robotSelectOptions[] = Array("label" => $robot['name'], "value" => $robot['serial']);
+			}
+
+			$form['elements'][] = Array("type" => "Select", "name" => "Robot", "caption" => "Select Robot", "options" => $robotSelectOptions);
 
 		}
 
