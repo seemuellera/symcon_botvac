@@ -62,12 +62,8 @@
 		$BotvacVendorOptions[] = Array("label" => "Vorwerk", "value" => "vorwerk");
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
-		if ($this->GetBuffer('AuthToken') ) {
+		if (! $this->GetBuffer('AuthToken') ) {
 
-
-			$form['elements'][] = Array("type" => "Label", "label" => "An Authentication Token was found");
-		}
-		else {
 
 			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
 			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
@@ -78,14 +74,22 @@
                         }
 
 		}
+		else {
 
+			$NeatoClient = new NeatoBotvacClient($this->GetBuffer('AuthToken'), $this->ReadPropertyString("BotvacVendor") );
 
-		// Now we need to check if we have a list of Robots in the buffer
-		if ($this->getBuffer('RobotList') ) {
+			$form['elements'][] = Array("type" => "Label", "label" => "An Authentication Token was found");
 
+			// Now we need a list of robots
+			$robots = Array();
+
+			$robots = $NeatoClient->getRobots();
+
+			print_r($robots);
+			
 
 		}
-	
+
 
 		// Return the completed form
 		return json_encode($form);
@@ -98,22 +102,6 @@
         *
         */
         public function FetchRobotList() {
-
-		if (! $this->GetBuffer('AuthToken') ) {
-
-			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
-			$AuthToken = $NeatoClient->authorize($this->ReadPropertyString("Username"), $this->ReadPropertyString("Password") );
-
-			if ($AuthToken) {
-
-				$this->SetBuffer('AuthToken', $AuthToken);
-			}
-		
-		}
-		else {
-
-			$NeatoClient = new NeatoBotvacClient($this->GetBuffer('AuthToken'), $this->ReadPropertyString("BotvacVendor") );
-		}
 
 
 		$allRobots = Array();
