@@ -149,6 +149,8 @@
 
 		$robotInformation = $NeatoRobot->getState();
 
+		print_r($robotInformation);
+
 		SetValue($this->GetIDForIdent("BotvacFirmware"), $robotInformation["meta"]["firmware"]);
 		SetValue($this->GetIDForIdent("BotvacDocked"), $robotInformation["details"]["isdocked"]);
 		SetValue($this->GetIDForIdent("BotvacCharge"), $robotInformation["details"]["charge"]);
