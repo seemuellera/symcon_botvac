@@ -66,7 +66,7 @@
 		$BotvacVendorOptions[] = Array("label" => "Vorwerk", "value" => "vorwerk");
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
-		if (! $this->GetBuffer('AuthToken') ) {
+		if ( (! $this->GetBuffer('AuthToken') ) || ($this->GetIDForIdent("BotvacSecret") ) ) {
 
 
 			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
@@ -136,7 +136,7 @@
         */
         public function RefreshInformation() {
 
-		$NeatoRobot = new NeatoBotvacRobo(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
+		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
 
 		print_r($NeatoRobot);
         }
