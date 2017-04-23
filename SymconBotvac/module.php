@@ -28,6 +28,7 @@
 		$this->RegisterPropertyString("Password","");
 		$this->RegisterPropertyString("BotvacVendor","");
 		$this->RegisterPropertyString("Robot","");
+		$this->RegisterPropertyInteger("RefreshInterval",5);
 
 		// Variables
 		$this->RegisterVariableString("BotvacSerial", "Robot Serial Number");
@@ -114,6 +115,9 @@
 					}
 				}
 			}
+
+			// Add a number spinner to select the refresh cycle
+			$form['elements'][] = Array("type" => "NumberSpinner", "name" => "RefreshInterval", "caption" => "Select Refresh Interval");
 
 		}
 
