@@ -144,7 +144,7 @@
 
 		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
 
-		print_r($NeatoRobot);
+		print_r($NeatoRobot->getState());
         }
     }
 ?>
