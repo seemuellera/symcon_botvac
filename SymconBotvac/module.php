@@ -27,6 +27,7 @@
 		$this->RegisterPropertyString("Username","");
 		$this->RegisterPropertyString("Password","");
 		$this->RegisterPropertyString("BotvacVendor","");
+		$this->RegisterPropertyString("Robot","");
 
 		// Variables
 		$this->RegisterVariableString("BotvacSerial", "Robot Serial Number");
@@ -94,6 +95,13 @@
 			}
 
 			$form['elements'][] = Array("type" => "Select", "name" => "Robot", "caption" => "Select Robot", "options" => $robotSelectOptions);
+
+
+			// Fill the variables when a Robot is selcted
+			if ($this->ReadPropertyString("Robot") ) {
+
+				SetValue($this->GetIDForIdent("BotvacSerial"), $this->ReadProperyString("Robot") );
+			}
 
 		}
 
