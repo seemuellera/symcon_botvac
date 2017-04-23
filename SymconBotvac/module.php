@@ -35,8 +35,11 @@
 		$this->RegisterVariableString("BotvacSecret", "Robot API Secret");
 		$this->RegisterVariableString("BotvacModel", "Robot Model");
 		$this->RegisterVariableString("BotvacName", "Robot Name");
+		$this->RegisterVariableString("BotvacFirmware", "Robot Firmware Version");
 		$this->RegisterVariableBoolean("BotvacStatus", "Robot Power Status","~Switch");
 		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode", "~Switch");
+		$this->RegisterVariableBoolean("BotvacDocked", "Robot is Docked");
+		$this->RegisterVariableBoolean("BotvacCharge", "Battery Level", "~Intensity.100");
  
         }
  
@@ -144,7 +147,11 @@
 
 		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
 
-		print_r($NeatoRobot->getState());
+		$robotInformation = $NeatoRobot->getState();
+
+		SetValue($this->GetIDForIdent("BotvacFirmware"), $robotInformation["meta"]["firmware"]);
+		SetValue($this->GetIDForIdent("BotvacDocked"), $robotInformation["details"]["isdocked"]);
+		SetValue($this->GetIDForIdent("BotvacCharge"), $robotInformation["details"]["charge"]);
         }
     }
 ?>
