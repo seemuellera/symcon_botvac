@@ -108,6 +108,8 @@
 
 					if ($currentRobot['serial'] == $this->ReadPropertyString("Robot")) {
 
+						print_r($currentRobot);
+
 
 						SetValue($this->GetIDForIdent("BotvacSecret"), $currentRobot["secret"]);
 						SetValue($this->GetIDForIdent("BotvacName"), $currentRobot["name"]);
