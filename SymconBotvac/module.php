@@ -100,7 +100,7 @@
 			// Fill the variables when a Robot is selcted
 			if ($this->ReadPropertyString("Robot") ) {
 
-				SetValue($this->GetIDForIdent("BotvacSerial"), $this->ReadProperyString("Robot") );
+				SetValue($this->GetIDForIdent("BotvacSerial"), $this->ReadPropertyString("Robot") );
 			}
 
 		}
