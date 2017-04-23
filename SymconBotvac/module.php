@@ -66,7 +66,7 @@
 		$BotvacVendorOptions[] = Array("label" => "Vorwerk", "value" => "vorwerk");
 		$form['elements'][] = Array("type" => "Select", "name" => "BotvacVendor", "caption" => "Select Vendor", "options" => $BotvacVendorOptions);
 
-		if ( (! $this->GetBuffer('AuthToken') ) || ($this->GetIDForIdent("BotvacSecret") ) ) {
+		if (! $this->GetBuffer('AuthToken') ) {
 
 
 			$NeatoClient = new NeatoBotvacClient(false, $this->ReadPropertyString("BotvacVendor") );
@@ -116,12 +116,18 @@
 				}
 			}
 
-			// Add a number spinner to select the refresh cycle
-			$form['elements'][] = Array("type" => "NumberSpinner", "name" => "RefreshInterval", "caption" => "Select Refresh Interval");
-
-			// Add the buttons for the test center
-			$form['actions'][] = Array("type" => "Button", "label" => "Refresh Robot Data", "onClick" => 'BOTVAC_RefreshInformation($id);');
 		}
+
+		if (GetValue($this->GetIDForIdent("BotvacSecret") ) != "" ) {
+	
+			$form['elements'][] = Array("type" => "Label", "label" => "A Robot with name " . GetValue($this->GetIDForIdent("BotvacName")) .  " and serial number " . GetValue($this->GetIDForIdent("BotvacSerial")) . " was successfully registered");
+		}
+	
+		// Add a number spinner to select the refresh cycle
+		$form['elements'][] = Array("type" => "NumberSpinner", "name" => "RefreshInterval", "caption" => "Select Refresh Interval");
+
+		// Add the buttons for the test center
+		$form['actions'][] = Array("type" => "Button", "label" => "Refresh Robot Data", "onClick" => 'BOTVAC_RefreshInformation($id);');
 
 
 		// Return the completed form
