@@ -119,6 +119,8 @@
 			// Add a number spinner to select the refresh cycle
 			$form['elements'][] = Array("type" => "NumberSpinner", "name" => "RefreshInterval", "caption" => "Select Refresh Interval");
 
+			// Add the buttons for the test center
+			$form['actions'][] = Array("type" => "Button", "label" => "Refresh Robot Data", "onClick" => 'BOTVAC_RefreshInformation($id);');
 		}
 
 
@@ -132,15 +134,11 @@
 	* Get the list of robots linked to this profile and modifies the Select list to allow the user to select them.
         *
         */
-        public function FetchRobotList() {
+        public function RefreshInformation() {
 
+		$NeatoRobot = new NeatoBotvacRobo(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
 
-		$allRobots = Array();
-		
-		$allRobots = $NeatoClient->getRobots();	
-
-		$this->SendDebug("BOTVAC", print_r($allRobots), 0);
-		
+		print_r($NeatoRobot);
         }
     }
 ?>
