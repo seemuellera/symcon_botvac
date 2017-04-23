@@ -32,6 +32,8 @@
 		// Variables
 		$this->RegisterVariableString("BotvacSerial", "Robot Serial Number");
 		$this->RegisterVariableString("BotvacSecret", "Robot API Secret");
+		$this->RegisterVariableString("BotvacModel", "Robot Model");
+		$this->RegisterVariableString("BotvacName", "Robot Name");
 		$this->RegisterVariableBoolean("BotvacStatus", "Robot Power Status","~Switch");
 		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode", "~Switch");
  
@@ -101,6 +103,17 @@
 			if ($this->ReadPropertyString("Robot") ) {
 
 				SetValue($this->GetIDForIdent("BotvacSerial"), $this->ReadPropertyString("Robot") );
+
+				foreach ($robots as $currentRobot) {
+
+					if ($currentRobot['serial'] == $this->ReadPropertyString("Robot")) {
+
+
+						SetValue($this->GetIDForIdent("BotvacSecret"), $currentRobot["secret"]);
+						SetValue($this->GetIDForIdent("BotvacName"), $currentRobot["name"]);
+						SetValue($this->GetIDForIdent("BotvacModel"), $currentRobot["model"]);
+					}
+				}
 			}
 
 		}
