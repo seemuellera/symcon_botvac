@@ -36,6 +36,7 @@
 		$this->RegisterVariableString("BotvacModel", "Robot Model");
 		$this->RegisterVariableString("BotvacName", "Robot Name");
 		$this->RegisterVariableString("BotvacFirmware", "Robot Firmware Version");
+		$this->RegisterVariableString("BotvacExtStatus", "Robot Extended Status");
 		$this->RegisterVariableBoolean("BotvacStatus", "Robot Power Status","~Switch");
 		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode", "~Switch");
 		$this->RegisterVariableBoolean("BotvacDocked", "Robot is Docked");
@@ -152,6 +153,60 @@
 		SetValue($this->GetIDForIdent("BotvacFirmware"), $robotInformation["meta"]["firmware"]);
 		SetValue($this->GetIDForIdent("BotvacDocked"), $robotInformation["details"]["isDocked"]);
 		SetValue($this->GetIDForIdent("BotvacCharge"), $robotInformation["details"]["charge"]);
+
+		if ($robotInformation["details"]["isDocked"] == 1) {
+
+			SetValue($this->GetIDForIdent("BotvacExtStatus"), "In Docking Station");
+		}
         }
+
+	public function StartCleaning() {
+
+		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
+
+		// Check if EcoMode is activated
+		if (GetValue($this->GetIDForIdent("BotvacEcoMode") ) ) {
+
+			$NeatoRobot->startEcoCleaning();
+			SetValue($this->GetIDForIdent("BotvacExtStatus"), "Cleaning in Eco-Mode");
+		}
+		else {
+	
+			$NeatoRobot->startCleaning();
+			SetValue($this->GetIDForIdent("BotvacExtStatus"), "Cleaning");
+		}
+	}
+
+	public function PauseCleaning() {
+
+		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
+		$NeatoRobot->pauseCleaning();
+		SetValue($this->GetIDForIdent("BotvacExtStatus"), "Paused");
+	}
+
+	public function ResumeCleaning() {
+
+		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
+
+		// Check if EcoMode is activated
+		if (GetValue($this->GetIDForIdent("BotvacEcoMode") ) ) {
+
+			$NeatoRobot->resumeCleaning();
+			SetValue($this->GetIDForIdent("BotvacExtStatus"), "Cleaning in Eco-Mode");
+		}
+		else {
+	
+			$NeatoRobot->resumeCleaning();
+			SetValue($this->GetIDForIdent("BotvacExtStatus"), "Cleaning");
+		}
+	}
+
+	public function SendToBase() {
+
+		$NeatoRobot = new NeatoBotvacRobot(GetValue($this->GetIDForIdent("BotvacSerial")), GetValue($this->GetIDForIdent("BotvacSecret")), GetValue($this->GetIDForIdent("BotvacModel")) );	
+		$NeatoRobot->sendToBase();
+		SetValue($this->GetIDForIdent("BotvacExtStatus"), "Back to Base");
+	}
+
     }
 ?>
