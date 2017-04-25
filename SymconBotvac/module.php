@@ -41,6 +41,9 @@
 		$this->RegisterVariableBoolean("BotvacEcoMode", "Robot Eco Mode", "~Switch");
 		$this->RegisterVariableBoolean("BotvacDocked", "Robot is Docked");
 		$this->RegisterVariableInteger("BotvacCharge", "Battery Level", "~Intensity.100");
+
+		// Timer
+		$this->RegisterTimer("UpdateRobotStatus", $this->ReadPropertyInteger("RefreshInterval"), "BOTVAC_RefreshInformation()");
  
         }
  
@@ -132,6 +135,10 @@
 
 		// Add the buttons for the test center
 		$form['actions'][] = Array("type" => "Button", "label" => "Refresh Robot Data", "onClick" => 'BOTVAC_RefreshInformation($id);');
+		$form['actions'][] = Array("type" => "Button", "label" => "Start Cleaning", "onClick" => 'BOTVAC_StartCleaning($id);');
+		$form['actions'][] = Array("type" => "Button", "label" => "Pause Cleaning", "onClick" => 'BOTVAC_PauseCleaning($id);');
+		$form['actions'][] = Array("type" => "Button", "label" => "Resume Cleaning", "onClick" => 'BOTVAC_ResumeCleaning($id);');
+		$form['actions'][] = Array("type" => "Button", "label" => "Send to Base", "onClick" => 'BOTVAC_SendToBase($id);');
 
 
 		// Return the completed form
