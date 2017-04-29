@@ -140,7 +140,7 @@
 		$form['actions'][] = Array("type" => "Button", "label" => "Resume Cleaning", "onClick" => 'BOTVAC_ResumeCleaning($id);');
 		$form['actions'][] = Array("type" => "Button", "label" => "Send to Base", "onClick" => 'BOTVAC_SendToBase($id);');
 
-		print_r($form);
+		print_r($form['actions']);
 
 
 		// Return the completed form
